@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CERITAKU - Multimedia Interaktif Unsur Intrinsik Cerita</title>
+<style>
+:root{
+  --bg:#fff8ed; --card:#ffffff; --text:#20312f; --muted:#5f716d;
+  --accent:#d97706; --accent2:#0f766e; --soft:#fef3c7; --soft2:#ccfbf1;
+  --danger:#b91c1c; --ok:#166534; --shadow:0 12px 28px rgba(32,49,47,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#fff7e8,#f4fffc);color:var(--text)}
+header{background:linear-gradient(135deg,#0f766e,#115e59);color:white;padding:30px 20px 22px}
+.header-wrap{max-width:1050px;margin:auto}
+.badge{display:inline-block;background:#fde68a;color:#78350f;padding:7px 12px;border-radius:999px;font-weight:700;font-size:13px}
+h1{font-size:clamp(28px,5vw,52px);margin:10px 0 8px}
+header p{max-width:800px;line-height:1.6;margin:0}
+nav{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);border-bottom:1px solid #e5e7eb;backdrop-filter:blur(8px)}
+.nav-wrap{max-width:1050px;margin:auto;display:flex;gap:8px;padding:10px;overflow-x:auto}
+nav button{border:0;background:#ecfdf5;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:700;color:#115e59;white-space:nowrap}
+nav button:hover{background:#d1fae5}
+main{max-width:1050px;margin:auto;padding:24px}
+section{display:none}
+section.active{display:block}
+.card{background:var(--card);border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow);border:1px solid #f2eee7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.feature{padding:16px;border-radius:16px;background:#fffaf0;border:1px solid #fde68a}
+.feature h3{margin-top:0}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--accent2);color:#fff}
+.btn-secondary{background:var(--accent);color:#fff}
+.btn-light{background:#f3f4f6;color:#1f2937}
+.story{font-size:17px;line-height:1.8;background:#fffbeb;border-left:5px solid #d97706;padding:18px;border-radius:14px}
+.highlight{background:#fef3c7;padding:2px 4px;border-radius:5px}
+.quiz-q{padding:16px;border:1px solid #e5e7eb;border-radius:16px;margin:12px 0}
+.option{display:block;margin:8px 0;padding:10px;border-radius:10px;background:#f8fafc;cursor:pointer}
+.option:hover{background:#ecfdf5}
+.feedback{font-weight:700;margin-top:8px}
+.ok{color:var(--ok)} .bad{color:var(--danger)}
+.progress-wrap{background:#e5e7eb;border-radius:999px;height:12px;overflow:hidden}
+.progress{height:100%;width:0;background:#0f766e;transition:.3s}
+.score{font-size:34px;font-weight:800;color:#0f766e}
+textarea,input[type=text]{width:100%;padding:12px;border-radius:12px;border:1px solid #cbd5e1;font:inherit}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top}
+.drag-item{padding:10px 12px;background:#ccfbf1;border:1px solid #5eead4;border-radius:10px;margin:8px 0;cursor:grab}
+.dropzone{min-height:70px;border:2px dashed #94a3b8;border-radius:12px;padding:10px;background:#f8fafc;margin-top:8px}
+.small{font-size:13px;color:var(--muted)}
+footer{max-width:1050px;margin:0 auto 30px;padding:0 24px;color:#64748b}
+@media(max-width:600px){main{padding:14px}.card{padding:16px}header{padding:24px 16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-wrap">
+    <span class="badge">Belajar bersama Bu WULAN</span>
+    <h1>CERDAS NUSANTARA</h1>
+    <p><b>Cerita Digital Adaptif Berbasis Budaya Nusantara</b> 
+    untuk membantu murid kelas V memahami unsur intrinsik cerita melalui membaca, menyimak, bermain, dan refleksi budaya.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-wrap">
+    <button onclick="show('beranda')">🏠 Beranda</button>
+    <button onclick="show('materi')">📚 Materi</button>
+    <button onclick="show('cerita')">🎧 Cerita</button>
+    <button onclick="show('game')">🎮 Game</button>
+    <button onclick="show('kuis')">📝 Kuis</button>
+    <button onclick="show('refleksi')">🌾 Refleksi</button>
+  </div>
+</nav>
+
+<main>
+<section id="beranda" class="active">
+  <div class="card">
+    <h2>Selamat Datang 👋</h2>
+    <p>Hari ini kita akan menjadi <b>Detektif Cerita</b>. Tugasmu adalah menemukan tokoh, penokohan, latar, alur, dan amanat dari sebuah cerita yang dekat dengan kehidupan masyarakat.</p>
+    <div class="progress-wrap"><div id="progress" class="progress"></div></div>
+    <p class="small">Kemajuan belajarmu akan bertambah setelah menyelesaikan bagian utama.</p>
+  </div>
+  <div class="grid">
+    <div class="feature"><h3>🎯 Tujuan</h3><p>Murid mampu mengidentifikasi minimal 4 unsur intrinsik cerita dengan benar.</p></div>
+    <div class="feature"><h3>📖 Literasi</h3><p>Membaca, menyimak, memahami informasi, dan menyampaikan alasan berdasarkan teks.</p></div>
+    <div class="feature"><h3>🌿 CRT</h3><p>Menghubungkan cerita dengan pengalaman, budaya lokal, gotong royong, dan kehidupan murid.</p></div>
+    <div class="feature"><h3>💻 Digital</h3><p>Belajar dengan multimedia, audio, permainan, kuis, dan umpan balik langsung.</p></div>
+  </div>
+</section>
+
+<section id="materi">
+  <div class="card">
+    <h2>Kenali Unsur Intrinsik Cerita</h2>
+    <div class="grid">
+      <div class="feature"><h3>👤 Tokoh</h3><p>Pelaku yang mengalami peristiwa dalam cerita.</p></div>
+      <div class="feature"><h3>💬 Penokohan</h3><p>Sifat atau karakter tokoh, misalnya jujur, berani, sabar, atau pemarah.</p></div>
+      <div class="feature"><h3>📍 Latar</h3><p>Tempat, waktu, dan suasana terjadinya peristiwa.</p></div>
+      <div class="feature"><h3>🧩 Alur</h3><p>Urutan peristiwa dari awal, muncul masalah, hingga penyelesaian.</p></div>
+      <div class="feature"><h3>💡 Amanat</h3><p>Pesan atau nilai yang dapat dipetik pembaca dari cerita.</p></div>
+    </div>
+    <p><b>Tips Detektif Cerita:</b> cari bukti dalam teks. Jangan hanya menebak.</p>
+    <button class="btn btn-primary" onclick="done(1);show('cerita')">Saya paham, lanjut membaca →</button>
+  </div>
+</section>
+
+<section id="cerita">
+  <div class="card">
+    <h2>🎧 Cerita: "Lampion di Malam Sedekah Bumi"</h2>
+    <p class="small">Cerita kontekstual bertema budaya lokal dan gotong royong.</p>
+    <div id="storyText" class="story">
+      Sabtu sore, <span class="highlight">Ayu</span> membantu ibunya menyiapkan makanan untuk acara sedekah bumi di desa. 
+      Di halaman balai desa, warga menghias panggung dengan janur dan lampion. Ayu sangat bersemangat karena malam itu ia dipercaya membawa lampion hasil karya kelompoknya.<br><br>
+      Saat acara hampir dimulai, angin kencang bertiup. Beberapa lampion jatuh dan salah satu rangka hiasan roboh. Ayu sempat panik, tetapi ia segera mengajak teman-temannya memperbaiki hiasan. 
+      Pak Darto, ketua RT, ikut membantu sambil berkata bahwa acara desa akan terasa indah jika semua warga saling menolong.<br><br>
+      Menjelang malam, halaman balai desa kembali rapi. Lampion menyala berjajar di sepanjang jalan. Ayu tersenyum lega. Ia sadar bahwa kebersamaan membuat pekerjaan yang sulit menjadi lebih ringan.
+    </div>
+    <br>
+    <button class="btn btn-secondary" onclick="speakStory()">🔊 Dengarkan Cerita</button>
+    <button class="btn btn-light" onclick="stopSpeak()">⏹ Hentikan Audio</button>
+    <button class="btn btn-primary" onclick="done(2);show('game')">Sudah membaca, lanjut game →</button>
+  </div>
+</section>
+
+<section id="game">
+  <div class="card">
+    <h2>🎮 Game: Kelompokkan Bukti Cerita</h2>
+    <p>Seret setiap kartu ke kotak unsur intrinsik yang tepat.</p>
+    <div id="dragItems">
+      <div class="drag-item" draggable="true" data-type="tokoh">Ayu</div>
+      <div class="drag-item" draggable="true" data-type="penokohan">Suka membantu dan tidak mudah menyerah</div>
+      <div class="drag-item" draggable="true" data-type="latar">Halaman balai desa pada Sabtu sore hingga malam</div>
+      <div class="drag-item" draggable="true" data-type="alur">Lampion jatuh → warga memperbaiki → acara kembali berjalan</div>
+      <div class="drag-item" draggable="true" data-type="amanat">Kebersamaan membuat pekerjaan sulit menjadi lebih ringan</div>
+    </div>
+    <div class="grid">
+      <div><b>Tokoh</b><div class="dropzone" data-accept="tokoh"></div></div>
+      <div><b>Penokohan</b><div class="dropzone" data-accept="penokohan"></div></div>
+      <div><b>Latar</b><div class="dropzone" data-accept="latar"></div></div>
+      <div><b>Alur</b><div class="dropzone" data-accept="alur"></div></div>
+      <div><b>Amanat</b><div class="dropzone" data-accept="amanat"></div></div>
+    </div>
+    <p id="gameFeedback" class="feedback"></p>
+    <button class="btn btn-primary" onclick="checkGame()">Periksa Jawaban</button>
+  </div>
+</section>
+
+<section id="kuis">
+  <div class="card">
+    <h2>📝 Kuis Detektif Cerita</h2>
+    <p>Pilih jawaban paling tepat. Setelah selesai, klik <b>Lihat Skor</b>.</p>
+    <form id="quizForm">
+      <div class="quiz-q"><b>1. Tokoh utama pada cerita adalah...</b>
+        <label class="option"><input type="radio" name="q1" value="a"> Pak Darto</label>
+        <label class="option"><input type="radio" name="q1" value="b"> Ayu</label>
+        <label class="option"><input type="radio" name="q1" value="c"> Ibu Ayu</label>
+      </div>
+      <div class="quiz-q"><b>2. Sifat Ayu yang paling tampak adalah...</b>
+        <label class="option"><input type="radio" name="q2" value="a"> Mudah menyerah</label>
+        <label class="option"><input type="radio" name="q2" value="b"> Suka membantu</label>
+        <label class="option"><input type="radio" name="q2" value="c"> Sombong</label>
+      </div>
+      <div class="quiz-q"><b>3. Latar tempat utama cerita adalah...</b>
+        <label class="option"><input type="radio" name="q3" value="a"> Balai desa</label>
+        <label class="option"><input type="radio" name="q3" value="b"> Sekolah</label>
+        <label class="option"><input type="radio" name="q3" value="c"> Pasar</label>
+      </div>
+      <div class="quiz-q"><b>4. Masalah yang muncul dalam cerita adalah...</b>
+        <label class="option"><input type="radio" name="q4" value="a"> Ayu kehilangan makanan</label>
+        <label class="option"><input type="radio" name="q4" value="b"> Angin menjatuhkan lampion dan hiasan</label>
+        <label class="option"><input type="radio" name="q4" value="c"> Acara dibatalkan sejak pagi</label>
+      </div>
+      <div class="quiz-q"><b>5. Amanat yang tepat adalah...</b>
+        <label class="option"><input type="radio" name="q5" value="a"> Pekerjaan harus dilakukan sendiri</label>
+        <label class="option"><input type="radio" name="q5" value="b"> Kegiatan desa tidak penting</label>
+        <label class="option"><input type="radio" name="q5" value="c"> Gotong royong membuat pekerjaan menjadi lebih ringan</label>
+      </div>
+    </form>
+    <button class="btn btn-secondary" onclick="scoreQuiz()">Lihat Skor</button>
+    <div id="scoreBox"></div>
+  </div>
+</section>
+
+<section id="refleksi">
+  <div class="card">
+    <h2>🌾 Refleksi Budaya dan Pengalamanmu</h2>
+    <p>Bagian ini menggunakan prinsip <b>Culturally Responsive Teaching (CRT)</b>: pengalaman dan budaya murid menjadi bagian dari proses belajar.</p>
+    <label><b>1. Apakah di lingkunganmu pernah ada kegiatan gotong royong atau tradisi bersama? Ceritakan singkat.</b></label>
+    <textarea id="r1" rows="4" placeholder="Tuliskan pengalamanmu..."></textarea><br><br>
+    <label><b>2. Nilai budaya apa yang kamu temukan dari cerita?</b></label>
+    <textarea id="r2" rows="3" placeholder="Contoh: gotong royong, kepedulian, kebersamaan..."></textarea><br><br>
+    <label><b>3. Bagian cerita mana yang paling dekat dengan kehidupanmu? Mengapa?</b></label>
+    <textarea id="r3" rows="3" placeholder="Tuliskan alasanmu..."></textarea><br><br>
+    <button class="btn btn-primary" onclick="saveReflection()">Simpan Refleksi</button>
+    <p id="saveMsg" class="feedback"></p>
+  </div>
+  <div class="card">
+    <h3>✨ Koneksi Literasi Lintas Mata Pelajaran</h3>
+    <table>
+      <tr><th>Mata Pelajaran</th><th>Koneksi Literasi</th></tr>
+      <tr><td>Bahasa Indonesia</td><td>Membaca pemahaman dan menemukan bukti unsur intrinsik.</td></tr>
+      <tr><td>Pendidikan Pancasila</td><td>Menganalisis nilai gotong royong dan kepedulian.</td></tr>
+      <tr><td>IPAS</td><td>Menghubungkan peristiwa dengan lingkungan sosial masyarakat.</td></tr>
+      <tr><td>Seni</td><td>Mengamati hiasan, lampion, dan ekspresi visual budaya.</td></tr>
+    </table>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><b>CERDAS NUSANTARA</b> • Multimedia Interaktif untuk Seminar PPG • Materi: Unsur Intrinsik Cerita • Kelas V B</p>
+</footer>
+
+<script>
+let progress=0;
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function done(step){
+  progress=Math.max(progress,step);
+  document.getElementById('progress').style.width=(progress/5*100)+'%';
+}
+function speakStory(){
+  stopSpeak();
+  const text=document.getElementById('storyText').innerText;
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='id-ID'; u.rate=.95;
+  speechSynthesis.speak(u);
+}
+function stopSpeak(){ speechSynthesis.cancel(); }
+
+let dragged=null;
+document.querySelectorAll('.drag-item').forEach(item=>{
+  item.addEventListener('dragstart',()=>dragged=item);
+});
+document.querySelectorAll('.dropzone').forEach(zone=>{
+  zone.addEventListener('dragover',e=>e.preventDefault());
+  zone.addEventListener('drop',e=>{
+    e.preventDefault();
+    if(dragged){ zone.appendChild(dragged); dragged=null; }
+  });
+});
+function checkGame(){
+  let total=0, correct=0;
+  document.querySelectorAll('.dropzone').forEach(zone=>{
+    [...zone.children].forEach(item=>{
+      total++;
+      if(item.dataset.type===zone.dataset.accept) correct++;
+    });
+  });
+  const f=document.getElementById('gameFeedback');
+  if(total<5){f.textContent='Masih ada kartu yang belum dipindahkan.'; f.className='feedback bad';return}
+  if(correct===5){
+    f.textContent='Hebat! Semua bukti cerita sudah tepat. 🎉';
+    f.className='feedback ok'; done(3);
+    setTimeout(()=>show('kuis'),700);
+  }else{
+    f.textContent=`${correct} dari 5 kartu sudah benar. Coba periksa kembali.`;
+    f.className='feedback bad';
+  }
+}
+function scoreQuiz(){
+  const key={q1:'b',q2:'b',q3:'a',q4:'b',q5:'c'};
+  let correct=0, answered=0;
+  Object.keys(key).forEach(q=>{
+    const el=document.querySelector(`input[name="${q}"]:checked`);
+    if(el){answered++; if(el.value===key[q]) correct++;}
+  });
+  const box=document.getElementById('scoreBox');
+  if(answered<5){
+    box.innerHTML='<p class="feedback bad">Jawab semua soal terlebih dahulu.</p>'; return;
+  }
+  const score=correct*20;
+  let msg=score>=80?'Luar biasa! Kamu sudah mampu mengidentifikasi unsur intrinsik dengan baik.':'Tetap semangat! Baca kembali cerita dan cari bukti pada teks.';
+  box.innerHTML=`<p class="score">${score}/100</p><p>${msg}</p>`;
+  done(4);
+}
+function saveReflection(){
+  const data={r1:document.getElementById('r1').value,r2:document.getElementById('r2').value,r3:document.getElementById('r3').value};
+  localStorage.setItem('ceritaku_refleksi',JSON.stringify(data));
+  document.getElementById('saveMsg').textContent='Refleksi tersimpan di perangkat ini. ✅';
+  document.getElementById('saveMsg').className='feedback ok';
+  done(5);
+}
+(function(){
+  const saved=localStorage.getItem('ceritaku_refleksi');
+  if(saved){
+    const d=JSON.parse(saved);
+    document.getElementById('r1').value=d.r1||'';
+    document.getElementById('r2').value=d.r2||'';
+    document.getElementById('r3').value=d.r3||'';
+  }
+})();
+</script>
+</body>
+</html>
